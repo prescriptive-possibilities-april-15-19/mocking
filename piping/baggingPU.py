@@ -19,24 +19,24 @@ from __future__ import division
 
 import itertools
 import numbers
-import numpy as np
+import numpy as np# type: ignore
 from warnings import warn
 from abc import ABCMeta, abstractmethod
 
-from sklearn.base import ClassifierMixin, RegressorMixin
-from sklearn.externals.joblib import Parallel, delayed
-from sklearn.externals.six import with_metaclass
-from sklearn.externals.six.moves import zip
-from sklearn.metrics import r2_score, accuracy_score
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from sklearn.utils import check_random_state, check_X_y, check_array, column_or_1d
-from sklearn.utils.random import sample_without_replacement
-from sklearn.utils.validation import has_fit_parameter, check_is_fitted
-from sklearn.utils import indices_to_mask, check_consistent_length
-from sklearn.utils.metaestimators import if_delegate_has_method
-from sklearn.utils.multiclass import check_classification_targets
+from sklearn.base import ClassifierMixin, RegressorMixin # type: ignore
+from sklearn.externals.joblib import Parallel, delayed# type: ignore
+from sklearn.externals.six import with_metaclass# type: ignore
+from sklearn.externals.six.moves import zip# type: ignore
+from sklearn.metrics import r2_score, accuracy_score# type: ignore
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor# type: ignore
+from sklearn.utils import check_random_state, check_X_y, check_array, column_or_1d# type: ignore
+from sklearn.utils.random import sample_without_replacement# type: ignore
+from sklearn.utils.validation import has_fit_parameter, check_is_fitted# type: ignore
+from sklearn.utils import indices_to_mask, check_consistent_length# type: ignore
+from sklearn.utils.metaestimators import if_delegate_has_method# type: ignore
+from sklearn.utils.multiclass import check_classification_targets# type: ignore
 
-from sklearn.ensemble.base import BaseEnsemble, _partition_estimators
+from sklearn.ensemble.base import BaseEnsemble, _partition_estimators# type: ignore
 
 
 __all__ = ["BaggingClassifierPU"]
