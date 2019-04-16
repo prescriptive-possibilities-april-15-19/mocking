@@ -5,8 +5,8 @@ import pickle
 import numpy as np  # type: ignore
 import argparse
 from subprocess import call
-#bsh = lambda s: call(s, shell=True)
-parser = argparse.ArgumentParser(description="give hyperparameters")
+
+parser = argparse.ArgumentParser(description="give hyperparameters to TfidfVectorizer and create a pickled model")
 parser.add_argument(
     "--min_f_count",
     default=16,
@@ -37,8 +37,8 @@ def seq_vectorizer(
         min_f_count: int = 10,
         ngram_max: int = 10,
         max_features: int = 10000,
-        downsample: int = -
-        1) -> TfidfVectorizer:
+        downsample: int = -1
+        ) -> TfidfVectorizer:
     if downsample < 16:
         sequences = pd.read_csv(
             raw_prefix + 'sequences.csv').rename({'Unnamed: 0': 'seq_id'}, axis=1)
@@ -55,10 +55,11 @@ def seq_vectorizer(
         max_features=max_features
     )
 
-    print(sequences.shape)
+    print("training data: ", sequences.shape)
 
+    print("fitting........") 
     tfidf.fit(sequences.sequence.values)
-
+    print("all trained up!")
     return tfidf
 
 
