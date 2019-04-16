@@ -5,7 +5,7 @@ import pickle
 import numpy as np  # type: ignore
 import argparse
 from subprocess import call
-'''
+
 parser = argparse.ArgumentParser(description="give hyperparameters to TfidfVectorizer and create a pickled model")
 parser.add_argument(
     "--min_f_count",
@@ -29,7 +29,7 @@ parser.add_argument(
     help="downsample: throttle from read_csv, process less data")
 
 args = parser.parse_args()
-'''
+
 raw_prefix = 'https://raw.githubusercontent.com/prescriptive-possibilities-april-15-19/mocking/master/'
 
 
@@ -62,7 +62,7 @@ def seq_vectorizer(
     print("all trained up!")
     return tfidf
 
-'''
+
 if __name__ == '__main__':
     print("will fit sequences.csv to TF-IDF with parameters", args)
     sequences_tfidf_model = seq_vectorizer(
@@ -78,4 +78,4 @@ if __name__ == '__main__':
         pickle.dump(sequences_tfidf_model, fp)
     print("your pickle is size ", call("wc -c tfidf.pickle", shell=True))
 
-    '''
+    

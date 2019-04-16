@@ -1,6 +1,7 @@
 """partially supervised learning"""
 
 from tfidf import seq_vectorizer, raw_prefix
+raw_prefix = 'https://raw.githubusercontent.com/prescriptive-possibilities-april-15-19/mocking/master/'
 from baggingPU import BaggingClassifierPU  # ignore: type
 from sklearn.tree import DecisionTreeClassifier  # ignore: type
 import pandas as pd  # ignore: type
@@ -16,10 +17,12 @@ estimators = 100
 downsample_binding = 230000
 downsample_sequences = 20000
 
-sample_size = 200
+sample_size = 800
 s_ = np.floor(sample_size / 2 - sample_size / 100)
 
 sequences_tfidf_model = seq_vectorizer(ngram_max=3)
+#with open('tfidf.pickle', 'rb') as p: 
+#    sequences_tfidf_model = p
 
 
 def init_dat(lig_num: int = lig_num, sample_size: int = sample_size,
