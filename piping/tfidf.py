@@ -5,6 +5,7 @@ import pickle
 import numpy as np  # type: ignore
 import argparse
 from subprocess import call
+import sys
 '''
 parser = argparse.ArgumentParser(description="give hyperparameters to TfidfVectorizer and create a pickled model")
 parser.add_argument(
@@ -57,9 +58,10 @@ def seq_vectorizer(
 
     print(f"FOR TF-IDF: training TF-IDF with dims {sequences.shape}\t", end="")
 
-    print("fitting........\t", end="")
+    sys.stdout.write("fitting........\t")
     tfidf.fit(sequences.sequence.values)
-    print("TF-IDF is all trained up!")
+    sys.stdout.write("TF-IDF is all trained up!\n")
+    sys.stdout.flush()
     return tfidf
 
 '''
