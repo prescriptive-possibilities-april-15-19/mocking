@@ -102,7 +102,7 @@ def fitter_df_maker(lig_id: int) -> Tuple[pd.DataFrame, pd.DataFrame]:
             index=df_fitter.index)
 
         y = df_fitter.bind
-        print(X.shape, y.shape)
+        print(lig_id, X.shape, y.shape)
         return X, y
     else:
         raise Exception
