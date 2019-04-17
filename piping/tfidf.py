@@ -55,11 +55,11 @@ def seq_vectorizer(
         max_features=max_features
     )
 
-    print("training data: ", sequences.shape)
+    print(f"FOR TF-IDF: training TF-IDF with dims {sequences.shape}\t", end="")
 
-    print("fitting........") 
+    print("fitting........\t", end="")
     tfidf.fit(sequences.sequence.values)
-    print("all trained up!")
+    print("TF-IDF is all trained up!")
     return tfidf
 
 '''

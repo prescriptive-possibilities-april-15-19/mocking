@@ -103,11 +103,14 @@ sequences, lig_id_vals, binding = init_dat(
     #downsample_sequences=downsample_sequences # you really can't do this, if you downsample here you'll throw off the ligand/sequence correspondence.
 )
 
-print(f"Sequences: {sequences.shape};\t Binding: {binding.shape};\t Number of ligand id values: {len(lig_id_vals)}. ")
+
 
 tfidf = seq_vectorizer(ngram_max=4, downsample=40000)
 
+print(f"FOR BaggingClassifierPU MODELS:\t Sequences: {sequences.shape};\t Binding: {binding.shape};\t Number of ligand id values: {len(lig_id_vals)}. ")
+
 models = {}
+print("populating models dict...", end="")
 for lig_id in lig_id_vals:
     try:
         X, y = fitter_df_maker(lig_id)
@@ -115,7 +118,7 @@ for lig_id in lig_id_vals:
                                  n_estimators=estimators,
                                  #n_jobs=-1,
                                  max_samples=int(sum(y.values)))
-
+        print(f"now fitting on ligand {lig_id}...", end="")
         bc.fit(X,y)
         models[lig_id] = bc
     except:
