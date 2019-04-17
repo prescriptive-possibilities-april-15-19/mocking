@@ -6,6 +6,7 @@ import numpy as np  # type: ignore
 import argparse
 from subprocess import call
 import sys
+from utils import Spinner
 '''
 parser = argparse.ArgumentParser(description="give hyperparameters to TfidfVectorizer and create a pickled model")
 parser.add_argument(
@@ -58,8 +59,11 @@ def seq_vectorizer(
 
     print(f"FOR TF-IDF: training TF-IDF with dims {sequences.shape}\t", end="")
 
-    sys.stdout.write("fitting........\t")
+    sys.stdout.write("fitting.....\t")
+    spinner = Spinner()
+    spinner.start
     tfidf.fit(sequences.sequence.values)
+    spinner.stop
     sys.stdout.write("TF-IDF is all trained up!\n")
     sys.stdout.flush()
     return tfidf
