@@ -14,6 +14,7 @@ from subprocess import call
 from typing import Tuple, List
 from functools import reduce
 import sys
+from utils import Spinner
 
 from baggingPU import BaggingClassifierPU
 from tfidf import seq_vectorizer, raw_prefix
@@ -110,18 +111,21 @@ tfidf = seq_vectorizer(ngram_max=4, downsample=40000)
 
 print(f"FOR BaggingClassifierPU MODELS:\t Sequences: {sequences.shape};\t Binding: {binding.shape};\t Number of ligand id values: {len(lig_id_vals)}. ")
 
+spinner = Spinner()
 models = {}
 for lig_id in lig_id_vals:
     try:
         X, y = fitter_df_maker(lig_id)
-        sys.stdout.write(f"populating models dict now at length {len(models.keys())}... ")
+        sys.stdout.write(f"Models dict now populated to length {len(models.keys())}; ")
         bc = BaggingClassifierPU(DecisionTreeClassifier(),
                                  n_estimators=estimators,
                                  #n_jobs=-1,
                                  max_samples=int(sum(y.values)))
 
-        sys.stdout.write(f"next, fitting on ligand #{lig_id}.")
+        sys.stdout.write(f"next, fitting on ligand #{lig_id}")
+        spinner.start()
         bc.fit(X,y)
+        spinner.stop()
         models[lig_id] = bc
         #sys.stdout.flush()
         sys.stdout.write('\r') # yes finally https://stackoverflow.com/questions/23138413/clearing-old-data-from-sys-stdout-in-python

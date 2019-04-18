@@ -59,15 +59,16 @@ def seq_vectorizer(
 
     print(f"FOR TF-IDF: training TF-IDF with dims {sequences.shape}\t", end="")
 
-    sys.stdout.write("fitting.....\t")
+    sys.stdout.write("fitting")
     spinner = Spinner()
-    spinner.start
+    spinner.start()
     tfidf.fit(sequences.sequence.values)
-    spinner.stop
+    spinner.stop()
     sys.stdout.write("TF-IDF is all trained up!\n")
     sys.stdout.flush()
     return tfidf
 
+# TODO: Train TfidfVectorizer on BOTH ligands.csv and sequences.csv
 '''
 if __name__ == '__main__':
     print("will fit sequences.csv to TF-IDF with parameters", args)
